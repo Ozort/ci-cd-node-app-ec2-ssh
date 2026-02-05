@@ -1,0 +1,19 @@
+{
+  "name": "ci-cd-node-app-ec2-ssh",
+  "version": "1.0.0",
+  "description": "Node.js app deployed to AWS EC2 using GitHub Actions and SSH",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ozort/ci-cd-node-app-ec2-ssh.git"
+  },
+  "author": "Bobby Abu",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
