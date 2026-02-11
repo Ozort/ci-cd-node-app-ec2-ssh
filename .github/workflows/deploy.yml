@@ -16,11 +16,14 @@ jobs:
       run: npm ci
 
     - name: Deploy to EC2
-      uses: appleboy/ssh-action@v0.1.9
+      uses: burnett01/rsync-deployments@5.1
       with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
+        switches: -avzr --delete
+        path: ./
+        remote_path: /var/www/my-app/current
+        remote_host: ${{ secrets.EC2_HOST }}
+        remote_user: ${{ secrets.EC2_USER }}
+        remote_key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           TIMESTAMP=$(date +%Y%m%d%H%M)
           RELEASE_DIR="/var/www/my-app/releases/$TIMESTAMP"
