@@ -20,7 +20,7 @@ jobs:
       with:
         switches: -avzr --delete
         path: ./
-        remote_path: /var/www/my-app/releases/temp
+        remote_path: /home/ubuntu/my-app/releases/temp
         remote_host: ${{ secrets.EC2_HOST }}
         remote_user: ${{ secrets.EC2_USER }}
         remote_key: ${{ secrets.EC2_SSH_KEY }}
@@ -34,15 +34,15 @@ jobs:
         script: |
           set -e
           TIMESTAMP=$(date +%Y%m%d%H%M)
-          RELEASE_DIR="/var/www/my-app/releases/$TIMESTAMP"
+          RELEASE_DIR="/home/ubuntu/my-app/releases/$TIMESTAMP"
 
           mkdir -p $RELEASE_DIR
-          rsync -av --delete /var/www/my-app/releases/temp/ $RELEASE_DIR/
+          rsync -av --delete /home/ubuntu/my-app/releases/temp/ $RELEASE_DIR/
           rm -rf /var/www/my-app/releases/temp
 
-          ln -sfn $RELEASE_DIR /var/www/my-app/current
+          ln -sfn $RELEASE_DIR /home/ubuntu/my-app/current
 
-          cd /var/www/my-app/current
+          cd /home/ubuntu/my-app/releases/temp
           npm ci --omit=dev
 
           pm2 stop my-app || true
