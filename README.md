@@ -132,4 +132,4 @@ Both projects demonstrate different but valid deployment strategies.
 
 ## 📝 Notes
 
-This project focuses on deployment automation rather than frontend development.
+This project focuses on deployment automation.
